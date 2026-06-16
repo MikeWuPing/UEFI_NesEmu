@@ -1,0 +1,86 @@
+## @file
+#  NesEmu UEFI application module.
+##
+#  Copyright (c) 2026 NesEmu contributors. All rights reserved.
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = NesEmu
+  FILE_GUID                      = B7C53D11-9E40-4F2D-8A1B-6F5C7D8E9A0F
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 0.10
+  ENTRY_POINT                    = UefiMain
+
+[Sources]
+  Uefi/entry.c
+  Uefi/main.c
+  Uefi/rom_browser.c
+  Uefi/uefi_gfx.c
+  Uefi/uefi_timer.c
+  Uefi/uefi_fs.c
+  Uefi/uefi_input.c
+  Uefi/font.c
+  Uefi/font_data.c
+  Emu/cpu6502.c
+  Emu/ppu.c
+  Emu/mmu.c
+  Emu/controller.c
+  Emu/emulator.c
+  Emu/genie.c
+  Emu/utils.c
+  Emu/mappers/mapper.c
+  Emu/mappers/mmc1.c
+  Emu/mappers/mmc3.c
+  Emu/mappers/uxrom.c
+  Emu/mappers/cnrom.c
+  Emu/mappers/axrom.c
+  Emu/mappers/gnrom.c
+  Emu/mappers/colordreams.c
+  Emu/mappers/vrc1.c
+  Emu/mappers/mapper185.c
+  Emu/mappers/cprom.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiLib
+  UefiApplicationEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  MemoryAllocationLib
+  DevicePathLib
+  PcdLib
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiSimpleTextInProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gEfiDiskIoProtocolGuid
+
+[Guids]
+  gEfiFileInfoGuid
+
+[Pcd]
+
+[BuildOptions]
+  #
+  # Force-include the libc-compatibility shim into every translation unit
+  # of this module so malloc/free/memset/memcpy/strlen are redirected to
+  # their EDK2 equivalents without touching the upstream NES source.
+  # /utf-8 keeps the MSVC parser sane on sources that contain non-ASCII
+  # characters in comments.
+  #
+  # Define NESEMU_AUTORUN (in main.c the path is hardcoded) to bypass the
+  # ROM browser and boot the smoke-test ROM directly. Useful for headless
+  # QEMU runs; leave undefined for the interactive browser.
+  #
+  MSFT:*_*_*_CC_FLAGS   = /FIUefi/nes_compat.h /utf-8
+  GCC:*_*_*_CC_FLAGS    = -include Uefi/nes_compat.h -finput-charset=UTF-8
