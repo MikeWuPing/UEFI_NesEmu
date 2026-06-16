@@ -3,6 +3,10 @@
 [English](README_EN.md) | 简体中文
 
 把 [ObaraEmmanuel/NES](https://github.com/ObaraEmmanuel/NES) 那套基于 SDL3 的纯 C 语言 NES 模拟器移植到 UEFI Shell，做成一个能在 Shell 提示符后直接加载执行的图形化 `.efi` 应用。CPU、PPU、MMU、Mapper 这条核心仿真链路原样保留；声音被整体剥离，渲染走 UEFI GOP，文件 IO 走 UEFI 简单文件系统协议，输入走 UEFI SimpleTextInput。
+<img width="955" height="892" alt="Snipaste_2026-06-16_22-09-19" src="https://github.com/user-attachments/assets/9c1db6b1-a565-459a-8f29-7925340fd3c3" />
+<img width="1011" height="921" alt="Snipaste_2026-06-16_22-08-04" src="https://github.com/user-attachments/assets/5142b651-49b1-4f32-b34c-b264acf18209" />
+<img width="626" height="477" alt="full2" src="https://github.com/user-attachments/assets/397150fc-4c0d-40b8-8caa-9c36bc1cbbe6" />
+
 
 ## 项目定位
 
