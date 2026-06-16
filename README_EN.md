@@ -3,6 +3,9 @@
 English | [简体中文](README.md)
 
 This project ports [ObaraEmmanuel/NES](https://github.com/ObaraEmmanuel/NES) — a pure-C NES emulator originally built on SDL3 — to the UEFI Shell environment, packaged as a graphical `.efi` application that you can launch straight from the Shell prompt. The CPU / PPU / MMU / Mapper emulation chain is preserved verbatim from upstream; audio is dropped entirely, rendering goes through UEFI GOP, file IO goes through the UEFI SimpleFileSystem protocol, and input goes through UEFI SimpleTextInput.
+<img width="955" height="892" alt="Snipaste_2026-06-16_22-09-19" src="https://github.com/user-attachments/assets/9c1db6b1-a565-459a-8f29-7925340fd3c3" />
+<img width="1011" height="921" alt="Snipaste_2026-06-16_22-08-04" src="https://github.com/user-attachments/assets/5142b651-49b1-4f32-b34c-b264acf18209" />
+<img width="626" height="477" alt="full2" src="https://github.com/user-attachments/assets/397150fc-4c0d-40b8-8caa-9c36bc1cbbe6" />
 
 ## What it is
 
